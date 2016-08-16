@@ -11,6 +11,9 @@
     <modules>
         <module>myweb-user</module>
         <module>myweb-application</module>
+        <module>myweb-basic</module>
+        <module>myweb-user-api</module>
+        <module>myweb-api</module>
     </modules>
 
     <dependencies>
