@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.Arrays;
+
 /**
  * Created by wl on 16-8-15.
  */
@@ -30,9 +32,42 @@ public class MyApplication extends Application<MyConfig> {
         String startModule = myConfig.getStartModule();
         logger.info("startModule:" + startModule);
         String modules[] = startModule.split(",");
-        AnnotationConfigApplicationContext acac = new AnnotationConfigApplicationContext();
+        logger.info("get modules: " + Arrays.deepToString(modules));
+        reigisterModules(modules);
 
 
+    }
+
+    //层次化加入spring框架
+    private void reigisterModules(String[] modules) {
+
+        Class<?> base = null;
+        try {
+            base = Class.forName("com.wl.myweb.config.conf.BasicConfig");
+        } catch (ClassNotFoundException e) {
+            logger.error("class not found!", e);
+
+        }
+       //注入基础配置
+        AnnotationConfigApplicationContext root = new AnnotationConfigApplicationContext(base);
+
+        for (String module : modules) {
+            String mname = module.substring(0, 1).toUpperCase();
+
+            String moduleName = String.format("com.wl.myweb.s%.conf.s%", module, mname);
+            try {
+                Class<?> cmoduleName = Class.forName(moduleName);
+
+                AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+                context.setParent(root);
+                context.register(cmoduleName);
+                context.refresh();
+
+            } catch (ClassNotFoundException e) {
+                logger.error("class not found!", e);
+            }
+
+        }
 
     }
 }
