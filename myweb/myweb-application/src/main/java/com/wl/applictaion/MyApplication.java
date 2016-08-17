@@ -60,7 +60,7 @@ public class MyApplication extends Application<MyConfig> {
 
         Class<?> base = null;
         try {
-            base = Class.forName("com.wl.myweb.config.conf.BasicConfig");
+            base = Class.forName("com.wl.myweb.basic.conf.BasicConfig");
         } catch (ClassNotFoundException e) {
             logger.error("class not found!", e);
 
@@ -69,9 +69,9 @@ public class MyApplication extends Application<MyConfig> {
         AnnotationConfigApplicationContext root = new AnnotationConfigApplicationContext(base);
 
         for (String module : modules) {
-            String mname = module.substring(0, 1).toUpperCase();
+            String mname = module.substring(0, 1).toUpperCase() + "Config";
 
-            String moduleName = String.format("com.wl.myweb.s%.conf.s%", module, mname);
+            String moduleName = String.format("com.wl.myweb.%s.conf.%s", module, mname);
             try {
                 Class<?> cmoduleName = Class.forName(moduleName);
 
