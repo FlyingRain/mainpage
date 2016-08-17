@@ -16,7 +16,7 @@ public class ResourceContainer {
         return resources;
     }
 
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
+    public void addResources(Resource resource) {
+        resources.add(resource);
     }
 }
