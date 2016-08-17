@@ -1,6 +1,8 @@
 package com.wl.applictaion;
 
+import com.wl.applictaion.containers.ResourceContainer;
 import io.dropwizard.Application;
+import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.slf4j.Logger;
@@ -16,6 +18,8 @@ import java.util.Arrays;
 public class MyApplication extends Application<MyConfig> {
 
     Logger logger = LoggerFactory.getLogger(MyApplication.class);
+
+    private ApplicationRegister applicationRegister = new ApplicationRegister();
 
     public static void main(String[] args) throws Exception {
         new MyApplication().run(args);
@@ -34,6 +38,19 @@ public class MyApplication extends Application<MyConfig> {
         String modules[] = startModule.split(",");
         logger.info("get modules: " + Arrays.deepToString(modules));
         reigisterModules(modules);
+
+        //注册rest服务
+        JerseyEnvironment je = environment.jersey();
+        ResourceContainer resourceContainer = applicationRegister.getResourceContainer();
+        if(resourceContainer==null){
+            logger.error("no resource to be registered");
+            return;
+        }
+        resourceContainer.getResources().forEach(resource->{
+            je.register(resource);
+        });
+
+
 
 
     }
@@ -62,6 +79,8 @@ public class MyApplication extends Application<MyConfig> {
                 context.setParent(root);
                 context.register(cmoduleName);
                 context.refresh();
+//注册服务
+                applicationRegister.registe(module,context);
 
             } catch (ClassNotFoundException e) {
                 logger.error("class not found!", e);

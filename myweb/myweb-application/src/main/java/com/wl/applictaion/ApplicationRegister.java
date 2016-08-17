@@ -22,12 +22,31 @@ public class ApplicationRegister {
 
     private ResourceContainer resourceContainer = new ResourceContainer();
 
-    public ApplicationRegister(String module,ApplicationContext applicationContext){
+    public Map<String, ApplicationContext> getContextContainer() {
+        return contextContainer;
+    }
+
+    public void setContextContainer(Map<String, ApplicationContext> contextContainer) {
+        this.contextContainer = contextContainer;
+    }
+
+    public ResourceContainer getResourceContainer() {
+        return resourceContainer;
+    }
+
+    public void setResourceContainer(ResourceContainer resourceContainer) {
+        this.resourceContainer = resourceContainer;
+    }
+
+    public void  registe(String module,ApplicationContext applicationContext){
 
         contextContainer.put(module,applicationContext);
         logger.info("start find rest resources!");
         Map<String,Resource> resources = applicationContext.getBeansOfType(Resource.class);
-
+        for(String key : resources.keySet()){
+            Resource resource = resources.get(key);
+            resourceContainer.addResources(resource);
+        }
 
     }
 
