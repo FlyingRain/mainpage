@@ -6,7 +6,7 @@
 *.class
 *.classpath
 *.project
-*conf
+
 
 .settings/
 *log/
