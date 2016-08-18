@@ -69,7 +69,9 @@ public class MyApplication extends Application<MyConfig> {
         AnnotationConfigApplicationContext root = new AnnotationConfigApplicationContext(base);
 
         for (String module : modules) {
-            String mname = module.substring(0, 1).toUpperCase() + module.substring(1) + "Config";
+
+            String mname = module.substring(0, 1).toUpperCase() + module.substring(1)+ "Config";
+
 
             String moduleName = String.format("com.wl.myweb.%s.conf.%s", module, mname);
             try {
