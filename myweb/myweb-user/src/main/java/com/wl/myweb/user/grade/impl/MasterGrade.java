@@ -15,7 +15,7 @@ public class MasterGrade extends UserGrade {
     }
 
     public MasterGrade(List<String> authorities) {
-        //设置最高为10
+        //
         this(10,authorities);
     }
 
