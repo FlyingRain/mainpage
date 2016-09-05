@@ -1,5 +1,6 @@
 package com.wl.myweb.user.conf;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,5 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackages = {"com.wl.myweb.user.resourceimpl"})
+@MapperScan("com.wl.myweb.user.service.mapper")
 public class UserConfig {
 }
