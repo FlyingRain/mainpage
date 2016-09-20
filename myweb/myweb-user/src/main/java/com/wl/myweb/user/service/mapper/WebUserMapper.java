@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface WebUserMapper {
 
-    @Select("select userId,userName,age,gender,email,phone,address,director,extension form webuser where username=#{username} and password=#{password}")
+    @Select("select user_id as userId,user_name as userName,age,gender,email,phone,address,director,extension from webuser where user_name=#{userName} and password=#{password}")
     User getUserByNamePwd(@Param("userName") String userName, @Param("password") String password);
 }
