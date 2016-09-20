@@ -9,13 +9,16 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by wul on 2016/8/17.
  */
-@Path("/wu")
+@Path("/myweb")
 @Produces(MediaType.APPLICATION_JSON)
-
 public interface UserResource extends Resource {
 
     @GET
     @Path("/hello")
     TestModel sayHello(@QueryParam("say") String say);
+
+    @GET
+    @Path("/login")
+    User login(@QueryParam("userName") String userName, @QueryParam("password") String password);
 
 }
