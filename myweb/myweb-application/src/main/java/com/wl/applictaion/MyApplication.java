@@ -5,11 +5,14 @@ import io.dropwizard.Application;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.servlet.DispatcherType;
 import java.util.Arrays;
+import java.util.EnumSet;
 
 /**
  * Created by wl on 16-8-15.
@@ -39,6 +42,8 @@ public class MyApplication extends Application<MyConfig> {
         logger.info("get modules: " + Arrays.deepToString(modules));
         reigisterModules(modules);
 
+        environment.servlets().addFilter("CrossOriginFilter", new CrossOriginFilter())
+                .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
         //注册rest服务
         JerseyEnvironment je = environment.jersey();
         ResourceContainer resourceContainer = applicationRegister.getResourceContainer();

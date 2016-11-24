@@ -26,7 +26,7 @@ public class UserResourceImpl implements UserResource {
     }
 
     @Override
-    public User login(String userName,String password) {
+    public String login(String userName,String password) {
         logger.info("accept request : userName=" + userName);
         User user = userService.getUserByNamePwd(userName, password);
 

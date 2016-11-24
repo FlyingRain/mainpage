@@ -19,6 +19,6 @@ public interface UserResource extends Resource {
 
     @GET
     @Path("/login")
-    User login(@QueryParam("userName") String userName, @QueryParam("password") String password);
+    String login(@QueryParam("userName") String userName, @QueryParam("password") String password);
 
 }
