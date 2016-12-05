@@ -29,7 +29,9 @@ public class UserResourceImpl implements UserResource {
     }
 
     @Override
+
     public User login(String userName, String password) {
+
         logger.info("accept request : userName=" + userName);
         UserModel userModel = userService.getUserByNamePwd(userName,password);
         return ModelToView.modelToView(userModel,User.class);
