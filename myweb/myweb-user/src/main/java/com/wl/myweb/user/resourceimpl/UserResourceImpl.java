@@ -1,10 +1,13 @@
 package com.wl.myweb.user.resourceimpl;
 
 
+import com.wl.myweb.basic.utils.ModelToView;
 import com.wl.myweb.user.api.UserResource;
+import com.wl.myweb.user.model.SignRequest;
 import com.wl.myweb.user.model.TestModel;
+import com.wl.myweb.user.model.User;
 import com.wl.myweb.user.service.UserService;
-import com.wl.myweb.user.service.models.User;
+import com.wl.myweb.user.service.models.UserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +29,16 @@ public class UserResourceImpl implements UserResource {
     }
 
     @Override
-    public User login(String userName,String password) {
+    public User login(String userName, String password) {
         logger.info("accept request : userName=" + userName);
-        User user = userService.getUserByNamePwd(userName, password);
+        UserModel userModel = userService.getUserByNamePwd(userName,password);
+        return ModelToView.modelToView(userModel,User.class);
+    }
 
-        if (user == null) {
-            return "wrong userName or password!";
-        } else {
-            return "Hello," + userName + "!";
-        }
+    @Override
+    public User sign(SignRequest signRequest) {
+        logger.info("start sign:" + signRequest);
+
+        return null;
     }
 }
