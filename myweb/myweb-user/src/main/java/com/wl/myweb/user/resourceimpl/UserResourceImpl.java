@@ -22,6 +22,7 @@ public class UserResourceImpl implements UserResource {
 
 
     public TestModel sayHello(String say) {
+        logger.info("get request!" + say);
         return new TestModel("wulei", say);
     }
 
