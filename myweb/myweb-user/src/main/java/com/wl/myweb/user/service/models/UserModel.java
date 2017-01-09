@@ -2,10 +2,12 @@ package com.wl.myweb.user.service.models;
 
 import com.wl.myweb.user.grade.context.GradeContext;
 
+import java.util.Date;
+
 /**
  * Created by wul on 2016/8/18.
  */
-public class User {
+public class UserModel {
     /**
      * 用户Id
      */
@@ -18,10 +20,19 @@ public class User {
      * 性别
      */
     private String gender;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     /**
-     * 年龄
+     * 生日
      */
-    private String age;
+    private Date birthday;
     /**
      * 电子邮箱
      */
@@ -31,6 +42,7 @@ public class User {
      */
     private String phone;
 
+    private String password;
     /**
      * 所属列别
      */
@@ -51,6 +63,14 @@ public class User {
         return userId;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }
@@ -63,13 +83,7 @@ public class User {
         this.gender = gender;
     }
 
-    public String getAge() {
-        return age;
-    }
 
-    public void setAge(String age) {
-        this.age = age;
-    }
 
     public String getEmail() {
         return email;
@@ -93,5 +107,18 @@ public class User {
 
     public void setGradeContext(GradeContext gradeContext) {
         this.gradeContext = gradeContext;
+    }
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthday=" + birthday +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gradeContext=" + gradeContext +
+                '}';
     }
 }
