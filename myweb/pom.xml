@@ -14,8 +14,8 @@
         <module>myweb-basic</module>
         <module>myweb-user-api</module>
         <module>myweb-api</module>
-        <module>order</module>
-        <module>article</module>
+        <module>myweb-article-api</module>
+        <module>myweb-article</module>
     </modules>
 
     <dependencies>
