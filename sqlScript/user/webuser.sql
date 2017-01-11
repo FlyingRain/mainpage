@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50635
 File Encoding         : 65001
 
-Date: 2017-01-11 04:06:02
+Date: 2017-01-11 05:07:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,9 +26,12 @@ CREATE TABLE `webuser` (
   `gender` tinyint(2) NOT NULL COMMENT '性别',
   `birthday` date DEFAULT NULL,
   `email` varchar(30) CHARACTER SET utf8 DEFAULT NULL COMMENT '邮箱',
+  `bankAccount` varchar(36) DEFAULT NULL,
+  `idCard` varchar(32) CHARACTER SET utf8 DEFAULT NULL COMMENT '身份证号',
   `phone` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '电话',
   `img` blob COMMENT '头像',
   `password` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '密码',
+  `extension` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '扩展字段',
   `dateAdded` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加日期',
   `lastModified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   PRIMARY KEY (`id`),

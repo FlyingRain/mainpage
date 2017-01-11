@@ -1,9 +1,9 @@
 package com.wl.myweb.user.api;
 
 import com.wl.myweb.api.Resource;
-import com.wl.myweb.user.model.SignRequest;
-import com.wl.myweb.user.model.TestModel;
+import com.wl.myweb.api.model.Result;
 import com.wl.myweb.user.model.User;
+import com.wl.myweb.user.model.TestModel;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,10 +22,10 @@ public interface UserResource extends Resource {
 
     @GET
     @Path("/login")
-    User login(@QueryParam("userName") String userName, @QueryParam("password") String password);
+    Result<User> login(@QueryParam("userName") String userName, @QueryParam("password") String password);
 
     @POST
     @Path("/sign")
-    User sign(SignRequest signRequest);
+    Result<User> sign(User signRequest);
 
 }

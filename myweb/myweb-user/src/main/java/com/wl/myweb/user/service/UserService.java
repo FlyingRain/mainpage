@@ -1,6 +1,6 @@
 package com.wl.myweb.user.service;
 
-import com.wl.myweb.user.model.SignRequest;
+import com.wl.myweb.user.model.User;
 import com.wl.myweb.user.service.models.UserModel;
 
 /**
@@ -10,5 +10,7 @@ public interface UserService {
 
     UserModel getUserByNamePwd(String userName, String password);
 
-    UserModel sign(SignRequest signRequest);
+    UserModel sign(User signRequest);
+
+    UserModel getUserByUserName(String userId);
 }

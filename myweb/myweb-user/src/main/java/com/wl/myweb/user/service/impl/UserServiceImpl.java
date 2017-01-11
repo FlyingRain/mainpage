@@ -1,11 +1,14 @@
 package com.wl.myweb.user.service.impl;
 
-import com.wl.myweb.user.model.SignRequest;
+import com.wl.myweb.basic.utils.ModelToView;
+import com.wl.myweb.user.model.User;
 import com.wl.myweb.user.service.mapper.WebUserMapper;
 import com.wl.myweb.user.service.models.UserModel;
 import com.wl.myweb.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 /**
  * Created by wl on 16-9-4.
@@ -22,15 +25,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel sign(SignRequest signRequest) {
-        UserModel userModel = new UserModel();
-        userModel.setBirthday(userModel.getBirthday());
-        userModel.setEmail(signRequest.getEmail());
-        userModel.setUserName(signRequest.getUserName());
-        userModel.setPassword(signRequest.getPassword());
+    public UserModel sign(User signRequest) {
+        UserModel userModel = ModelToView.modelToView(signRequest,UserModel.class);
+        userModel.setUserId(UUID.randomUUID().toString());
         if(webUserMapper.insertUser(userModel)==1){
             return userModel;
         }
         return null;
+    }
+
+    @Override
+    public UserModel getUserByUserName(String userName) {
+        return webUserMapper.getUserByUserName(userName);
     }
 }

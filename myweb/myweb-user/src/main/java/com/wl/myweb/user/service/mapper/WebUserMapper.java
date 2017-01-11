@@ -10,11 +10,13 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface WebUserMapper {
 
-    @Select("select user_id as userId,user_name as userName,birthday,gender,email,phone,address,director,extension from webuser where user_name=#{userName} and password=#{password}")
+    @Select("select userId as userId,userName as userName,birthday,gender,email,phone,extension from webuser where user_name=#{userName} and password=#{password}")
     UserModel getUserByNamePwd(@Param("userName") String userName, @Param("password") String password);
 
-    @Insert("insert into webuser(user_name,birthday,gender.email,phone,address,director,extension) values " +
-            "(#{userModel.userName},#{userModel.birthday},#{userModel.gender},#{userModel.email},#{userModel.phone},#{userModel.address},#{userModel.director},#{userModel.extension})")
+    @Insert("insert into webuser(userId,userName,birthday,gender,email,phone,idCard,bankAccount,img,password,extension) values " +
+            "(#{userModel.userId},#{userModel.userName},#{userModel.birthday},#{userModel.gender},#{userModel.email},#{userModel.phone},#{userModel.idCard},#{userModel.bankAccount},#{userModel.img},#{userModel.password},#{userModel.extension})")
     int insertUser(@Param("userModel") UserModel userModel);
 
+    @Select("select userId as userId,userName as userName,birthday,gender,email,phone,password,extension from webuser where userName=#{userName}")
+    UserModel getUserByUserName(@Param("userName") String userId);
 }

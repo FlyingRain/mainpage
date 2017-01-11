@@ -20,15 +20,14 @@ public class UserModel {
      * 性别
      */
     private String gender;
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
+    /**
+     * 身份证
+     */
+    private String idCard;
+    /**
+     * 银行卡号
+     */
+    private String bankAccount;
     /**
      * 生日
      */
@@ -41,13 +40,18 @@ public class UserModel {
      * 电话
      */
     private String phone;
-
+    /**
+     * 头像
+     */
+    private String img;
+    /**
+     * 密码
+     */
     private String password;
     /**
-     * 所属列别
+     * 扩展字段
      */
-    private GradeContext gradeContext;
-
+    private String extension;
 
     public String getUserName() {
         return userName;
@@ -69,6 +73,31 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public void setExtension(String extension) {
+
+        this.extension = extension;
     }
 
     public void setUserId(String userId) {
@@ -97,16 +126,25 @@ public class UserModel {
         return phone;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public GradeContext getGradeContext() {
-        return gradeContext;
+
+    public String getImg() {
+        return img;
     }
 
-    public void setGradeContext(GradeContext gradeContext) {
-        this.gradeContext = gradeContext;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Override
@@ -115,10 +153,13 @@ public class UserModel {
                 "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", gender='" + gender + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", bankAccount='" + bankAccount + '\'' +
                 ", birthday=" + birthday +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", gradeContext=" + gradeContext +
+                ", password='" + password + '\'' +
+                ", extension='" + extension + '\'' +
                 '}';
     }
 }

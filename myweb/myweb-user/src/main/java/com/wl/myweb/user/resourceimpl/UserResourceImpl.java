@@ -1,11 +1,12 @@
 package com.wl.myweb.user.resourceimpl;
 
 
+import com.wl.myweb.api.model.Result;
+import com.wl.myweb.api.model.ReturnCode;
 import com.wl.myweb.basic.utils.ModelToView;
 import com.wl.myweb.user.api.UserResource;
-import com.wl.myweb.user.model.SignRequest;
-import com.wl.myweb.user.model.TestModel;
 import com.wl.myweb.user.model.User;
+import com.wl.myweb.user.model.TestModel;
 import com.wl.myweb.user.service.UserService;
 import com.wl.myweb.user.service.models.UserModel;
 import org.slf4j.Logger;
@@ -31,17 +32,22 @@ public class UserResourceImpl implements UserResource {
 
     @Override
 
-    public User login(String userName, String password) {
+    public Result<User> login(String userName, String password) {
 
         logger.info("accept request : userName=" + userName);
         UserModel userModel = userService.getUserByNamePwd(userName,password);
-        return ModelToView.modelToView(userModel,User.class);
+        return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,ModelToView.modelToView(userModel,User.class));
     }
 
     @Override
-    public User sign(SignRequest signRequest) {
+    public Result<User> sign(User signRequest) {
         logger.info("start sign:" + signRequest);
+        if(userService.getUserByUserName(signRequest.getUserName())!=null){
+            return new Result<>(ReturnCode.FAIL_HAVE_EXIST.code,ReturnCode.FAIL_HAVE_EXIST.value,null);
+        }
 
-        return null;
+        UserModel user = userService.sign(signRequest);
+
+        return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,ModelToView.modelToView(user,User.class));
     }
 }
