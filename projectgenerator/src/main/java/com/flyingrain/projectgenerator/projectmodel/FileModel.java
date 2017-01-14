@@ -4,6 +4,10 @@ package com.flyingrain.projectgenerator.projectmodel;
  * Created by wulei on 17-1-14.
  */
 public class FileModel {
+    /**
+     * 文件Id,在项目立唯一
+     */
+    private  String id;
 
     private String name;
 
@@ -11,12 +15,27 @@ public class FileModel {
 
     private String content;
 
-    private PackageModel packageModel;
+    private PackageModel parent;
 
-    public FileModel(String name, String type, PackageModel packageModel) {
+    public FileModel(String name, String type, PackageModel parent) {
         this.name = name;
         this.type = type;
-        this.packageModel = packageModel;
+        this.parent = parent;
+    }
+
+    public FileModel(String id, String name, String type, PackageModel parent) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.parent = parent;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -44,11 +63,11 @@ public class FileModel {
     }
 
     public PackageModel getPackageModel() {
-        return packageModel;
+        return parent;
     }
 
     public void setPackageModel(PackageModel packageModel) {
-        this.packageModel = packageModel;
+        this.parent = packageModel;
     }
 
     @Override
@@ -57,7 +76,7 @@ public class FileModel {
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", content='" + content + '\'' +
-                ", packageModel=" + packageModel +
+                ", packageModel=" + parent +
                 '}';
     }
 }

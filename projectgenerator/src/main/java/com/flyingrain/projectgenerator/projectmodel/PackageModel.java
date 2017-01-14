@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class PackageModel {
 
+    private String id;
+
     private String name;
 
     private PackageModel parent;
@@ -22,8 +24,22 @@ public class PackageModel {
         this.childernFiles = childernFiles;
     }
 
+    public PackageModel(String id, String name, PackageModel parent) {
+        this.id = id;
+        this.name = name;
+        this.parent = parent;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {

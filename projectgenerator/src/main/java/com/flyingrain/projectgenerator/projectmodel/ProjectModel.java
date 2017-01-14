@@ -1,13 +1,44 @@
 package com.flyingrain.projectgenerator.projectmodel;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by wulei on 17-1-14.
  */
 public class ProjectModel {
 
+    private String id;
+
     private String name;
 
-    private PackageModel root;
+    private PackageModel conf;
+
+    private List<PackageModel> modules;
+
+    private FileModel gitignore;
+
+    private FileModel pom;
+
+    private ConcurrentHashMap container;
+
+    public ProjectModel(String name, PackageModel conf, FileModel gitignore, FileModel pom) {
+        this.name = name;
+        this.conf = conf;
+        this.gitignore = gitignore;
+        this.pom = pom;
+        modules = new ArrayList<PackageModel>();
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -17,19 +48,21 @@ public class ProjectModel {
         this.name = name;
     }
 
-    public PackageModel getRoot() {
-        return root;
+
+    public void addMoudle(PackageModel moudle){
+        this.modules.add(moudle);
     }
 
-    public void setRoot(PackageModel root) {
-        this.root = root;
-    }
+
 
     @Override
     public String toString() {
         return "ProjectModel{" +
-                "name='" + name + '\'' +
-                ", root=" + root +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", conf=" + conf +
+                ", gitignore=" + gitignore +
+                ", pom=" + pom +
                 '}';
     }
 }
