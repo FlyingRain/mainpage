@@ -50,4 +50,10 @@ public class UserResourceImpl implements UserResource {
 
         return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,ModelToView.modelToView(user,User.class));
     }
+
+    @Override
+    public Result<String> getPassword(String email) {
+        String password = userService.getPwdByEmail(email);
+        return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,password);
+    }
 }

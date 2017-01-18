@@ -3,7 +3,7 @@ startModule : user
 
 server:
   type: default
-  applicationContextPath: /
+  applicationContextPath: /api
   applicationConnectors:
     - type: http
       port: 8081

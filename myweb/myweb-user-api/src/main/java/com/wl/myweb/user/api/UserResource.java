@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by wul on 2016/8/17.
  */
-@Path("/myweb")
+@Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface UserResource extends Resource {
@@ -25,7 +25,11 @@ public interface UserResource extends Resource {
     Result<User> login(@QueryParam("userName") String userName, @QueryParam("password") String password);
 
     @POST
-    @Path("/sign")
+    @Path("/register")
     Result<User> sign(User signRequest);
+
+    @GET
+    @Path("/forgetPassword")
+    Result<String> getPassword(@QueryParam("email") String email);
 
 }

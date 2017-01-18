@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
     public UserModel getUserByUserName(String userName) {
         return webUserMapper.getUserByUserName(userName);
     }
+
+    @Override
+    public String getPwdByEmail(String email) {
+        return webUserMapper.getPwdByEmail(email);
+    }
 }
