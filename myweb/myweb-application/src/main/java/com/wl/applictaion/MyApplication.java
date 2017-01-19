@@ -1,6 +1,8 @@
 package com.wl.applictaion;
 
+import com.codahale.metrics.MetricRegistry;
 import com.wl.applictaion.containers.ResourceContainer;
+import com.wl.myweb.basic.utils.PropertyUtil;
 import io.dropwizard.Application;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
@@ -11,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.DispatcherType;
-import java.util.Arrays;
-import java.util.EnumSet;
+import java.util.*;
 
 /**
  * Created by wl on 16-8-15.
@@ -39,6 +40,10 @@ public class MyApplication extends Application<MyConfig> {
         String startModule = myConfig.getStartModule();
         logger.info("startModule:" + startModule);
         String modules[] = startModule.split(",");
+        List<String> moduleList = Arrays.asList(modules);
+        PropertyUtil util = new PropertyUtil();
+        logger.info("start init property!");
+        util.init(moduleList);
         logger.info("get modules: " + Arrays.deepToString(modules));
         reigisterModules(modules);
 
