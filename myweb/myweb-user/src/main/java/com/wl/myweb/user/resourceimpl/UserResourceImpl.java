@@ -36,6 +36,9 @@ public class UserResourceImpl implements UserResource {
 
         logger.info("accept request : userName=" + userName);
         UserModel userModel = userService.getUserByNamePwd(userName,password);
+        if(userModel==null){
+            return new Result<>(ReturnCode.FAIL.code,ReturnCode.FAIL.value,null);
+        }
         return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,ModelToView.modelToView(userModel,User.class));
     }
 
