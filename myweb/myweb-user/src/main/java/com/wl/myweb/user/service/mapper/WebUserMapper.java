@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface WebUserMapper {
 
-    @Select("select userId as userId,userName as userName,birthday,gender,email,phone,extension from webuser where user_name=#{userName} and password=#{password}")
+    @Select("select userId as userId,userName as userName,birthday,gender,email,phone,extension from webuser where userName=#{userName} and password=#{password}")
     UserModel getUserByNamePwd(@Param("userName") String userName, @Param("password") String password);
 
     @Insert("insert into webuser(userId,userName,birthday,gender,email,phone,idCard,bankAccount,img,password,extension) values " +
