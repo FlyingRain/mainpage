@@ -1,4 +1,4 @@
-package com.wl.myweb.basic.utils;
+package com.wl.myweb.basic.utils.mail;
 
 /**
  * Created by wul on 1/19/17.
@@ -6,9 +6,9 @@ package com.wl.myweb.basic.utils;
 public interface MailContent {
     /**
      * 设置邮件内容
-     * @param content
+     * @param
      * @return
      */
-    String getMailContent(String content);
+    MailModel getMailContent();
 
 }
