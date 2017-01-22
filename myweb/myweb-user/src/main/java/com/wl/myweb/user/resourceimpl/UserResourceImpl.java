@@ -56,7 +56,13 @@ public class UserResourceImpl implements UserResource {
 
     @Override
     public Result<String> getPassword(String email) {
-        String password = userService.getPwdByEmail(email);
-        return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,password);
+        String result = userService.getPwdByEmail(email);
+        if("success".equals(result)){
+            return new Result<>(ReturnCode.SUCCESS.code,ReturnCode.SUCCESS.value,result);
+        }
+        else{
+            return new Result<>(ReturnCode.FAIL.code,ReturnCode.FAIL.value,result);
+        }
+
     }
 }

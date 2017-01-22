@@ -19,6 +19,6 @@ public interface WebUserMapper {
 
     @Select("select userId as userId,userName as userName,birthday,gender,email,phone,password,extension from webuser where userName=#{userName}")
     UserModel getUserByUserName(@Param("userName") String userId);
-    @Select("select password from webuser where email=#{email}")
-    String getPwdByEmail(String email);
+    @Select("select userId ,userName ,birthday,gender,email,phone,password,email,extension from webuser where email=#{email}")
+    UserModel getPwdByEmail(String email);
 }

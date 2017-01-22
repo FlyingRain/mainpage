@@ -20,8 +20,8 @@ logging:
     - type: file
       threshold: ALL
       logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
-      currentLogFilename: /home/wul/logs/myweb.log
-      archivedLogFilenamePattern: /home/wul/logs/myweb-%d{yyyy-MM-dd}-%i.log
+      currentLogFilename: /home/wulei/logs/myweb.log
+      archivedLogFilenamePattern: /home/wulei/logs/myweb-%d{yyyy-MM-dd}-%i.log
       archivedFileCount: 7
       timeZone: UTC+8
       maxFileSize: 10MB
